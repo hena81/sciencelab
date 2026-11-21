@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: sciencelab
+    runtime: node
+    plan: free
+    region: frankfurt
+    branch: main
+    buildCommand: echo "Ready"
+    startCommand: node server.js
+    healthCheckPath: /healthz

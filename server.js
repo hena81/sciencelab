@@ -93,6 +93,10 @@ async function handleApi(request, response) {
 }
 
 const server = http.createServer((request, response) => {
+  if (request.url === "/healthz" || request.url === "/health") {
+    send(response, 200, JSON.stringify({ status: "ok", app: "sciencelab" }), "application/json; charset=utf-8");
+    return;
+  }
   if (request.url.startsWith("/api/data")) {
     handleApi(request, response);
     return;
