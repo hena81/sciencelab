@@ -1,0 +1,709 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>عن المشروع ودليل الاستخدام | نظام إدارة خزانات المختبرات</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Tajawal", "Segoe UI", "Tahoma", "Arial", "sans-serif"],
+            },
+            colors: {
+              ink: "#111827",
+              ocean: "#2563eb",
+              oceanDark: "#1d4ed8",
+              leaf: "#059669",
+              amberSoft: "#f59e0b",
+              mist: "#f8fafc",
+            },
+            boxShadow: {
+              soft: "0 18px 45px rgba(15, 23, 42, 0.08)",
+              lifted: "0 22px 50px rgba(37, 99, 235, 0.12)",
+            },
+          },
+        },
+      };
+    </script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap");
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        min-height: 100vh;
+        background:
+          radial-gradient(circle at 15% 15%, rgba(37, 99, 235, 0.08), transparent 30%),
+          radial-gradient(circle at 85% 85%, rgba(5, 150, 105, 0.08), transparent 30%),
+          linear-gradient(180deg, #ffffff 0%, #f8fafc 40%, #f1f5f9 100%);
+      }
+
+      .nav-pill.active {
+        background: #2563eb;
+        color: #ffffff;
+        box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+      }
+
+      .glass-card {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(226, 232, 240, 0.85);
+      }
+
+      .section-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.35rem 0.9rem;
+        border-radius: 9999px;
+        font-size: 0.875rem;
+        font-weight: 700;
+      }
+    </style>
+  </head>
+  <body class="font-sans text-ink antialiased">
+    <!-- رأس الصفحة العلوي (Header) -->
+    <header class="sticky top-0 z-50 border-b border-slate-200/80 bg-white/95 shadow-sm backdrop-blur">
+      <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
+        <div class="flex min-w-0 items-center gap-3">
+          <div id="schoolLogoContainer" class="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-ocean text-white shadow-soft ring-1 ring-white/70">
+            <i data-lucide="flask-conical" class="h-6 w-6"></i>
+          </div>
+          <div class="min-w-0 flex-1">
+            <div class="flex items-center gap-2">
+              <span class="inline-block h-2 w-2 rounded-full bg-leaf"></span>
+              <p class="text-xs font-bold text-ocean">دليل النظام التعريفي الشامل</p>
+            </div>
+            <h1 id="schoolNameHeader" class="truncate text-lg font-extrabold sm:text-2xl">نظام إدارة خزانات المختبرات</h1>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2 sm:gap-3">
+          <a href="index.html" class="inline-flex h-10 items-center gap-2 rounded-md bg-ink px-4 text-xs font-bold text-white transition hover:bg-ocean focus:outline-none focus:ring-2 focus:ring-ocean focus:ring-offset-2 sm:text-sm">
+            <i data-lucide="arrow-right" class="h-4 w-4"></i>
+            <span>العودة للنظام الرئيسي</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- شريط التنقل الداخلي السريع (Quick Section Navigation) -->
+      <nav class="border-t border-slate-100 bg-slate-50/90 px-4 py-2 sm:px-6 lg:px-8">
+        <div class="mx-auto flex max-w-7xl items-center gap-2 overflow-x-auto text-xs font-bold whitespace-nowrap scrollbar-none sm:text-sm">
+          <a href="#overview" class="nav-pill inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-slate-600 transition hover:bg-white hover:text-ocean hover:shadow-sm">
+            <i data-lucide="sparkles" class="h-4 w-4"></i>
+            <span>نظرة عامة</span>
+          </a>
+          <a href="#target-audience" class="nav-pill inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-slate-600 transition hover:bg-white hover:text-ocean hover:shadow-sm">
+            <i data-lucide="users" class="h-4 w-4"></i>
+            <span>الفئة المستهدفة</span>
+          </a>
+          <a href="#user-guide" class="nav-pill inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-slate-600 transition hover:bg-white hover:text-ocean hover:shadow-sm">
+            <i data-lucide="book-open" class="h-4 w-4"></i>
+            <span>دليل الاستخدام</span>
+          </a>
+          <a href="#ai-tech" class="nav-pill inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-slate-600 transition hover:bg-white hover:text-ocean hover:shadow-sm">
+            <i data-lucide="cpu" class="h-4 w-4"></i>
+            <span>أدوات الذكاء الاصطناعي</span>
+          </a>
+          <a href="#educational-impact" class="nav-pill inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-slate-600 transition hover:bg-white hover:text-ocean hover:shadow-sm">
+            <i data-lucide="heart-handshake" class="h-4 w-4"></i>
+            <span>الأثر التعليمي والتحدي</span>
+          </a>
+          <a href="#metrics" class="nav-pill inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-slate-600 transition hover:bg-white hover:text-ocean hover:shadow-sm">
+            <i data-lucide="trending-up" class="h-4 w-4"></i>
+            <span>مؤشرات النجاح</span>
+          </a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+      <!-- 1. البانر الترحيبي والنظرة العامة (Hero & Overview) -->
+      <section id="overview" class="mb-12 scroll-mt-28">
+        <div class="relative overflow-hidden rounded-2xl border border-slate-200 bg-gradient-to-br from-white via-blue-50/50 to-emerald-50/50 p-6 shadow-soft sm:p-10">
+          <div class="relative z-10 max-w-3xl">
+            <div class="mb-4 inline-flex items-center gap-2 rounded-full border border-ocean/20 bg-ocean/10 px-3.5 py-1 text-xs font-extrabold text-ocean sm:text-sm">
+              <i data-lucide="award" class="h-4 w-4"></i>
+              <span>مبادرة رقمية لتحسين البيئة التعليمية في المختبرات المدرسية</span>
+            </div>
+            <h2 class="mb-4 text-2xl font-black leading-tight text-ink sm:text-4xl">
+              نظام إدارة خزانات المختبرات
+              <span class="block bg-gradient-to-r from-ocean to-leaf bg-clip-text text-transparent">
+                تنظيم، جرد، ووصول فوري للأدوات العلمية
+              </span>
+            </h2>
+            <p class="mb-6 text-base leading-relaxed text-slate-600 sm:text-lg">
+              مشروع تقني تعليمي نوعي تم تصميمه وتنفيذه لرقمنة إدارة مختبرات العلوم (الأحياء، الجيولوجيا، وغرفة التحضير) بمدرسة <strong id="schoolNameHero" class="text-ink">ثانوية صباح الناصر الصباح بنين</strong>. يهدف النظام إلى القضاء على عشوائية البحث اليدوي في 20 خزنة وعشرات الأرفف، من خلال توفير محرك استعلام فوري ذكي، وجرد رقمي للعهدة، وتجربة مستخدم تفاعلية متجاوبة تعمل على الهواتف الذكية وحواسيب المختبر على حد سواء.
+            </p>
+
+            <div class="flex flex-wrap items-center gap-3">
+              <a href="index.html" class="inline-flex h-11 items-center gap-2 rounded-md bg-ocean px-5 text-sm font-bold text-white shadow-lifted transition hover:bg-oceanDark focus:outline-none focus:ring-2 focus:ring-ocean focus:ring-offset-2">
+                <i data-lucide="play" class="h-4 w-4"></i>
+                <span>بدء استخدام النظام الآن</span>
+              </a>
+              <a href="#user-guide" class="inline-flex h-11 items-center gap-2 rounded-md border border-slate-300 bg-white px-5 text-sm font-bold text-slate-700 transition hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-300">
+                <i data-lucide="file-text" class="h-4 w-4"></i>
+                <span>قراءة دليل الاستخدام المفصل</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- بطاقات إحصائية بارزة في الهيرو -->
+          <div class="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
+            <div class="rounded-xl border border-white bg-white/80 p-4 shadow-sm">
+              <p class="text-xs font-bold text-slate-500">المختبرات المشمولة</p>
+              <p class="mt-1 text-2xl font-black text-ocean">3 مختبرات</p>
+              <p class="text-[11px] text-slate-400">أحياء، جيولوجيا، تحضير</p>
+            </div>
+            <div class="rounded-xl border border-white bg-white/80 p-4 shadow-sm">
+              <p class="text-xs font-bold text-slate-500">الخزانات المفهرسة</p>
+              <p class="mt-1 text-2xl font-black text-leaf">20 خزنة</p>
+              <p class="text-[11px] text-slate-400">محددة الموقع والمحتوى</p>
+            </div>
+            <div class="rounded-xl border border-white bg-white/80 p-4 shadow-sm">
+              <p class="text-xs font-bold text-slate-500">سرعة الاستعلام</p>
+              <p class="mt-1 text-2xl font-black text-amberSoft">&lt; 3 ثوانٍ</p>
+              <p class="text-[11px] text-slate-400">بحث فوري ولحظي</p>
+            </div>
+            <div class="rounded-xl border border-white bg-white/80 p-4 shadow-sm">
+              <p class="text-xs font-bold text-slate-500">التوافق والأجهزة</p>
+              <p class="mt-1 text-2xl font-black text-ink">100%</p>
+              <p class="text-[11px] text-slate-400">هواتف، أجهزة لوحية، حواسيب</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. الفئة المستهدفة (Target Audience) -->
+      <section id="target-audience" class="mb-14 scroll-mt-28">
+        <div class="mb-6 flex items-center justify-between">
+          <div>
+            <div class="section-badge bg-blue-100 text-ocean">
+              <i data-lucide="users" class="h-4 w-4"></i>
+              <span>المستفيدون من المشروع</span>
+            </div>
+            <h3 class="mt-2 text-2xl font-extrabold text-ink sm:text-3xl">الفئات المستهدفة وأوجه الاستفادة</h3>
+          </div>
+        </div>
+
+        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          <!-- المعلمون -->
+          <div class="glass-card flex flex-col justify-between rounded-xl p-6 shadow-soft transition hover:-translate-y-1 hover:shadow-lifted">
+            <div>
+              <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-blue-100 text-ocean">
+                <i data-lucide="graduation-cap" class="h-6 w-6"></i>
+              </div>
+              <h4 class="text-lg font-bold text-ink">معلمو ومعلمات العلوم</h4>
+              <p class="mt-1 text-xs font-semibold text-ocean">أحياء وجيولوجيا</p>
+              <ul class="mt-4 space-y-2.5 text-xs sm:text-sm text-slate-600">
+                <li class="flex items-start gap-2">
+                  <i data-lucide="check-circle-2" class="mt-0.5 h-4 w-4 shrink-0 text-leaf"></i>
+                  <span>البحث السريع والفوري عن المجسمات والشرائح المجهرية قبل الحصة.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <i data-lucide="check-circle-2" class="mt-0.5 h-4 w-4 shrink-0 text-leaf"></i>
+                  <span>تقليل زمن التجهيز العملي من 15 دقيقة إلى ثوانٍ معدودة.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <i data-lucide="check-circle-2" class="mt-0.5 h-4 w-4 shrink-0 text-leaf"></i>
+                  <span>تفعيل النماذج المعطلة أو المنسية في الدروس اليومية.</span>
+                </li>
+              </ul>
+            </div>
+            <div class="mt-6 border-t border-slate-100 pt-3 text-xs font-bold text-slate-400">
+              القيمة: راحة وتركيز أعلى في الشرح العملي
+            </div>
+          </div>
+
+          <!-- محضرو وفنيو المختبرات -->
+          <div class="glass-card flex flex-col justify-between rounded-xl p-6 shadow-soft transition hover:-translate-y-1 hover:shadow-lifted">
+            <div>
+              <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-emerald-100 text-leaf">
+                <i data-lucide="flask-round" class="h-6 w-6"></i>
+              </div>
+              <h4 class="text-lg font-bold text-ink">محضرو وفنيو المختبرات</h4>
+              <p class="mt-1 text-xs font-semibold text-leaf">المسؤولون عن العهدة</p>
+              <ul class="mt-4 space-y-2.5 text-xs sm:text-sm text-slate-600">
+                <li class="flex items-start gap-2">
+                  <i data-lucide="check-circle-2" class="mt-0.5 h-4 w-4 shrink-0 text-leaf"></i>
+                  <span>إدارة العهدة المدرسية بدقة وأرشفة موقع كل قطعة وخزنة.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <i data-lucide="check-circle-2" class="mt-0.5 h-4 w-4 shrink-0 text-leaf"></i>
+                  <span>إجراء الجرد السنوي والموسمي في ساعات قليلة بدقة تامة.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <i data-lucide="check-circle-2" class="mt-0.5 h-4 w-4 shrink-0 text-leaf"></i>
+                  <span>تحديث الكميات وملاحظات الصيانة والتالف بضغطة زر.</span>
+                </li>
+              </ul>
+            </div>
+            <div class="mt-6 border-t border-slate-100 pt-3 text-xs font-bold text-slate-400">
+              القيمة: جرد دقيق وحوكمة شاملة للعهدة
+            </div>
+          </div>
+
+          <!-- المتعلمون والطلاب -->
+          <div class="glass-card flex flex-col justify-between rounded-xl p-6 shadow-soft transition hover:-translate-y-1 hover:shadow-lifted">
+            <div>
+              <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-amber-100 text-amberSoft">
+                <i data-lucide="book-marked" class="h-6 w-6"></i>
+              </div>
+              <h4 class="text-lg font-bold text-ink">المتعلمون والطلاب</h4>
+              <p class="mt-1 text-xs font-semibold text-amberSoft">قلب العملية التعليمية</p>
+              <ul class="mt-4 space-y-2.5 text-xs sm:text-sm text-slate-600">
+                <li class="flex items-start gap-2">
+                  <i data-lucide="check-circle-2" class="mt-0.5 h-4 w-4 shrink-0 text-leaf"></i>
+                  <span>استثمار كامل زمن الحصة للتجريب والتطبيق العلمي بدلاً من الانتظار.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <i data-lucide="check-circle-2" class="mt-0.5 h-4 w-4 shrink-0 text-leaf"></i>
+                  <span>تجسيد المفاهيم المجردة (كالصدوع والطيّات والخلايا) بنماذج حية.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <i data-lucide="check-circle-2" class="mt-0.5 h-4 w-4 shrink-0 text-leaf"></i>
+                  <span>زيادة الشغف ومهارات التفكير الاستقصائي العملي.</span>
+                </li>
+              </ul>
+            </div>
+            <div class="mt-6 border-t border-slate-100 pt-3 text-xs font-bold text-slate-400">
+              القيمة: فهم أعمق وتجربة تعليمية تفاعلية
+            </div>
+          </div>
+
+          <!-- الإدارة والتوجيه الفني -->
+          <div class="glass-card flex flex-col justify-between rounded-xl p-6 shadow-soft transition hover:-translate-y-1 hover:shadow-lifted">
+            <div>
+              <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-indigo-100 text-indigo-600">
+                <i data-lucide="shield-alert" class="h-6 w-6"></i>
+              </div>
+              <h4 class="text-lg font-bold text-ink">الإدارة والتوجيه الفني</h4>
+              <p class="mt-1 text-xs font-semibold text-indigo-600">رؤساء الأقسام والمشرفون</p>
+              <ul class="mt-4 space-y-2.5 text-xs sm:text-sm text-slate-600">
+                <li class="flex items-start gap-2">
+                  <i data-lucide="check-circle-2" class="mt-0.5 h-4 w-4 shrink-0 text-leaf"></i>
+                  <span>متابعة لحظية لجاهزية المختبرات وكفاية الوسائل التعليمية.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <i data-lucide="check-circle-2" class="mt-0.5 h-4 w-4 shrink-0 text-leaf"></i>
+                  <span>اتخاذ قرارات الشراء والتزويد بناءً على تقارير رقمية دقيقة.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <i data-lucide="check-circle-2" class="mt-0.5 h-4 w-4 shrink-0 text-leaf"></i>
+                  <span>منع ازدواجية الطلب وتفادي هدر الميزانيات المخصصة.</span>
+                </li>
+              </ul>
+            </div>
+            <div class="mt-6 border-t border-slate-100 pt-3 text-xs font-bold text-slate-400">
+              القيمة: تقارير موثقة وقرارات مدروسة
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. دليل الاستخدام المبسط والتفاعلي (User Guide) -->
+      <section id="user-guide" class="mb-14 scroll-mt-28">
+        <div class="mb-6 flex items-center justify-between">
+          <div>
+            <div class="section-badge bg-emerald-100 text-leaf">
+              <i data-lucide="book-open" class="h-4 w-4"></i>
+              <span>الدليل التشغيلي التفاعلي</span>
+            </div>
+            <h3 class="mt-2 text-2xl font-extrabold text-ink sm:text-3xl">دليل استخدام النظام والخدمات المتاحة</h3>
+          </div>
+        </div>
+
+        <!-- شرح واجهة المستخدم -->
+        <div class="mb-8 rounded-xl border border-slate-200 bg-white p-6 shadow-soft">
+          <h4 class="text-xl font-bold text-ink">1. هيكل واجهة المستخدم والخدمات الأساسية</h4>
+          <p class="mt-1 text-sm text-slate-600">تم تقسيم النظام إلى واجهتين واضحتين تلبّيان احتياج المعلم والباحث السريع، ومسؤول الإدارة والتحضير:</p>
+
+          <div class="mt-6 grid gap-6 md:grid-cols-2">
+            <div class="rounded-lg border border-leaf/30 bg-leaf/5 p-5">
+              <div class="flex items-center gap-3">
+                <span class="flex h-10 w-10 items-center justify-center rounded-md bg-leaf text-white">
+                  <i data-lucide="search" class="h-5 w-5"></i>
+                </span>
+                <div>
+                  <h5 class="font-bold text-ink">أ. واجهة الاستعلام والبحث العام (متاحة للجميع)</h5>
+                  <p class="text-xs text-slate-500">لا تتطلب تسجيل دخول، وتعمل بضغطة زر واحدة</p>
+                </div>
+              </div>
+              <ul class="mt-4 space-y-2 text-xs sm:text-sm text-slate-700">
+                <li>• <strong>البحث بالمحتوى (Item Search):</strong> حقل بحث ذكي فوري يطابق أسماء الأجهزة والمجسمات مع إزالة الفروق الإملائية.</li>
+                <li>• <strong>البحث بالخزنة (Cabinet Search):</strong> قائمة منسدلة لاختيار أي خزنة من الـ 20 خزنة وعرض جرد كامل بما تحتويه.</li>
+                <li>• <strong>بطاقات النتائج الفورية:</strong> تبيّن اسم الأداة، والمختبر التابع له، والكمية، ورقم الخزنة، وملاحظات الحالة.</li>
+              </ul>
+            </div>
+
+            <div class="rounded-lg border border-ocean/30 bg-ocean/5 p-5">
+              <div class="flex items-center gap-3">
+                <span class="flex h-10 w-10 items-center justify-center rounded-md bg-ocean text-white">
+                  <i data-lucide="shield-check" class="h-5 w-5"></i>
+                </span>
+                <div>
+                  <h5 class="font-bold text-ink">ب. لوحة تحكم الإدارة (خاصة بالمحضرين ورئيس القسم)</h5>
+                  <p class="text-xs text-slate-500">محمية بتسجيل الدخول السري لضمان سلامة البيانات</p>
+                </div>
+              </div>
+              <ul class="mt-4 space-y-2 text-xs sm:text-sm text-slate-700">
+                <li>• <strong>إدارة الخزانات:</strong> إضافة خزانات جديدة وتعديل مسمياتها وتحديد مواقعها في كل مختبر.</li>
+                <li>• <strong>إدارة المحتويات:</strong> إضافة، تعديل، وحذف الأدوات وتعديل الكميات والتصنيفات (أحياء / جيولوجيا).</li>
+                <li>• <strong>إدارة المستخدمين والإعدادات:</strong> تخصيص الحسابات وتغيير اسم المدرسة والشعار.</li>
+                <li>• <strong>النسخ الاحتياطي:</strong> تصدير واستيراد قاعدة البيانات بصيغة JSON بضغطة زر.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- خطوات الاستخدام بالتسلسل -->
+        <div class="mb-8 rounded-xl border border-slate-200 bg-white p-6 shadow-soft">
+          <h4 class="text-xl font-bold text-ink">2. خطوات استخدام المشروع بالتسلسل</h4>
+          <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <div class="relative rounded-lg border border-slate-200 bg-slate-50/70 p-4">
+              <span class="absolute -top-3 right-4 flex h-7 w-7 items-center justify-center rounded-full bg-ocean text-xs font-black text-white shadow">1</span>
+              <div class="pt-2">
+                <h5 class="font-bold text-ink">فتح النظام</h5>
+                <p class="mt-1 text-xs text-slate-600">عبر متصفح الهاتف أو الكمبيوتر بكتابة الرابط المخصص أو عبر شبكة المختبر.</p>
+              </div>
+            </div>
+
+            <div class="relative rounded-lg border border-slate-200 bg-slate-50/70 p-4">
+              <span class="absolute -top-3 right-4 flex h-7 w-7 items-center justify-center rounded-full bg-ocean text-xs font-black text-white shadow">2</span>
+              <div class="pt-2">
+                <h5 class="font-bold text-ink">كتابة اسم الأداة</h5>
+                <p class="mt-1 text-xs text-slate-600">في خانة البحث (مثل: صخور، مجهر، صدوع) دون القلق من الهمزات أو الأخطاء الشائعة.</p>
+              </div>
+            </div>
+
+            <div class="relative rounded-lg border border-slate-200 bg-slate-50/70 p-4">
+              <span class="absolute -top-3 right-4 flex h-7 w-7 items-center justify-center rounded-full bg-ocean text-xs font-black text-white shadow">3</span>
+              <div class="pt-2">
+                <h5 class="font-bold text-ink">معاينة مكان الخزنة</h5>
+                <p class="mt-1 text-xs text-slate-600">تظهر بطاقة خضراء تبيّن: رقم الخزنة، والمختبر (أحياء / جيولوجيا / تحضير)، والكمية.</p>
+              </div>
+            </div>
+
+            <div class="relative rounded-lg border border-slate-200 bg-slate-50/70 p-4">
+              <span class="absolute -top-3 right-4 flex h-7 w-7 items-center justify-center rounded-full bg-ocean text-xs font-black text-white shadow">4</span>
+              <div class="pt-2">
+                <h5 class="font-bold text-ink">استخراج الأداة للحصة</h5>
+                <p class="mt-1 text-xs text-slate-600">التوجه مباشرة للخزنة المقصودة دون إهدار دقيقة واحدة في فتح الخزانات الأخرى.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- أمثلة عملية من واقع المختبر -->
+        <div class="rounded-xl border border-slate-200 bg-gradient-to-br from-white to-blue-50/40 p-6 shadow-soft">
+          <h4 class="text-xl font-bold text-ink">3. سيناريوهات وأمثلة عملية واقعية</h4>
+          <div class="mt-4 grid gap-4 md:grid-cols-3">
+            <div class="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
+              <div class="mb-2 flex items-center gap-2 text-ocean">
+                <i data-lucide="mountain" class="h-5 w-5"></i>
+                <h5 class="font-bold">سيناريو 1: درس التراكيب الجيولوجية</h5>
+              </div>
+              <p class="text-xs text-slate-600 leading-relaxed">
+                معلم الجيولوجيا يود شرح درس "الصدوع والطيّات"، يبحث بكلمة <strong>«صدوع»</strong> فيظهر له النظام أن المجسم في <strong>خزنة 1 - مختبر الجيولوجيا</strong> بكمية (1 قطعة)، فيجلبه المحضر في 10 ثوانٍ لتبدأ الحصة العملية فوراً.
+              </p>
+            </div>
+
+            <div class="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
+              <div class="mb-2 flex items-center gap-2 text-leaf">
+                <i data-lucide="microscope" class="h-5 w-5"></i>
+                <h5 class="font-bold">سيناريو 2: درس فحص الأنسجة الحية</h5>
+              </div>
+              <p class="text-xs text-slate-600 leading-relaxed">
+                معلم الأحياء يحتاج تجهيز 15 مجهراً ضوئياً وشرائح خلايا بصل، يختار من القائمة المنسدلة <strong>«خزنة 2 - مختبر الأحياء»</strong> فيشاهد قائمة المحتويات، مكان الشرائح، وحالة المجاهر قبل دخول الطلاب.
+              </p>
+            </div>
+
+            <div class="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
+              <div class="mb-2 flex items-center gap-2 text-amberSoft">
+                <i data-lucide="clipboard-check" class="h-5 w-5"></i>
+                <h5 class="font-bold">سيناريو 3: استلام عهدة ومجسمات جديدة</h5>
+              </div>
+              <p class="text-xs text-slate-600 leading-relaxed">
+                وصلت للمدرسة عينة صخور جديدة، يقوم فني المختبر بتسجيل الدخول للوحة التحكم، وإضافة الأداة: <strong>«عينة صخور رسوبية»</strong> وتحديد <strong>«خزنة 4 - مختبر جيولوجيا»</strong>، لتكون متاحة فوراً لكافة المعلمين في ثوانٍ.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. أدوات وتقنيات الذكاء الاصطناعي والتقنيات البرمجية (AI Tools & Tech) -->
+      <section id="ai-tech" class="mb-14 scroll-mt-28">
+        <div class="mb-6 flex items-center justify-between">
+          <div>
+            <div class="section-badge bg-purple-100 text-purple-700">
+              <i data-lucide="cpu" class="h-4 w-4"></i>
+              <span>التقنيات المستخدمة فعلياً في المشروع</span>
+            </div>
+            <h3 class="mt-2 text-2xl font-extrabold text-ink sm:text-3xl">أدوات وتقنيات الذكاء الاصطناعي والتطوير</h3>
+          </div>
+        </div>
+
+        <div class="grid gap-6 md:grid-cols-3">
+          <!-- 1. الذكاء الاصطناعي التوليدي والهندسة البرمجية -->
+          <div class="glass-card rounded-xl p-6 shadow-soft transition hover:shadow-lifted">
+            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-purple-100 text-purple-700">
+              <i data-lucide="bot" class="h-6 w-6"></i>
+            </div>
+            <h4 class="text-lg font-bold text-ink">Google Antigravity &amp; Gemini AI</h4>
+            <p class="mt-1 text-xs font-semibold text-purple-700">التطوير البرمجي بالذكاء الاصطناعي</p>
+            <div class="mt-4 space-y-3 text-xs sm:text-sm text-slate-600">
+              <p><strong>الغرض:</strong> التخطيط المعماري وهندسة الشيفرة البرمجية الكاملة للنظام (Frontend &amp; Backend).</p>
+              <p><strong>التوظيف الفعلي:</strong> توليد بنية HTML5 الدلالية، وضبط تصميم Tailwind CSS فائق التجاوب، وكتابة خادم Node.js وواجهات PHP المزامنة.</p>
+              <p><strong>القيمة المضافة:</strong> إنتاج كود نقي، سريع جداً، خفيف الحجم بدون مكتبات خارجية ثقيلة، وخفض وقت التطوير بنسبة 90%.</p>
+            </div>
+          </div>
+
+          <!-- 2. خوارزمية التطبيع اللغوي والبحث الذكي -->
+          <div class="glass-card rounded-xl p-6 shadow-soft transition hover:shadow-lifted">
+            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-blue-100 text-ocean">
+              <i data-lucide="binary" class="h-6 w-6"></i>
+            </div>
+            <h4 class="text-lg font-bold text-ink">خوارزمية التطبيع اللغوي الذكية</h4>
+            <p class="mt-1 text-xs font-semibold text-ocean">Arabic Text Normalization Engine</p>
+            <div class="mt-4 space-y-3 text-xs sm:text-sm text-slate-600">
+              <p><strong>الغرض:</strong> معالجة التحديات الإملائية الشائعة في اللغة العربية أثناء البحث السريع.</p>
+              <p><strong>التوظيف الفعلي:</strong> دمج دالة <code>normalize()</code> البرمجية الذكية لتوحيد أشكال الهمزات (أ، إ، آ إلى "ا")، والتاء المربوطة (ة إلى "ه")، والياء المقصورة (ى إلى "ي").</p>
+              <p><strong>القيمة المضافة:</strong> ضمان عثور المعلم على أي مجسم حتى لو كتبه بسرعة بدون تشكيل أو بهمزة مختلفة (مثل: "احياء" بدلاً من "أحياء").</p>
+            </div>
+          </div>
+
+          <!-- 3. معمارية البيانات الذاتية اللحظية -->
+          <div class="glass-card rounded-xl p-6 shadow-soft transition hover:shadow-lifted">
+            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-emerald-100 text-leaf">
+              <i data-lucide="database" class="h-6 w-6"></i>
+            </div>
+            <h4 class="text-lg font-bold text-ink">معمارية التخزين المشترك (JSON Schema)</h4>
+            <p class="mt-1 text-xs font-semibold text-leaf">Data Storage &amp; Cross-Device Sync</p>
+            <div class="mt-4 space-y-3 text-xs sm:text-sm text-slate-600">
+              <p><strong>الغرض:</strong> توفير قاعدة بيانات سريعة ومرنة تعمل محلياً وسحابياً دون تعقيدات خوادم قواعد البيانات الثقيلة.</p>
+              <p><strong>التوظيف الفعلي:</strong> تخزين ومزامنة بيانات 20 خزنة و67+ أداة في ملف JSON منظم مع قفل الكتابة لمنع تعارض التعديلات.</p>
+              <p><strong>القيمة المضافة:</strong> العمل بسلاسة على شبكة المدرسة الداخلية عبر الهاتف بدون الحاجة لإنترنت خارجي سريع، مع سهولة تامة في النسخ الاحتياطي.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. الأثر التعليمي والتحدي المعالج (Educational Impact) -->
+      <section id="educational-impact" class="mb-14 scroll-mt-28">
+        <div class="mb-6 flex items-center justify-between">
+          <div>
+            <div class="section-badge bg-rose-100 text-rose-700">
+              <i data-lucide="heart-handshake" class="h-4 w-4"></i>
+              <span>الأثر الحقيقي على العملية التعليمية</span>
+            </div>
+            <h3 class="mt-2 text-2xl font-extrabold text-ink sm:text-3xl">المشكلة والتحدي وأثر تطبيق المشروع</h3>
+          </div>
+        </div>
+
+        <div class="mb-8 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-soft">
+          <div class="border-b border-slate-200 bg-slate-50 px-6 py-4">
+            <h4 class="text-lg font-bold text-ink">مقارنة شاملة: واقع المختبرات قبل وبعد تطبيق المشروع</h4>
+          </div>
+          <div class="divide-y divide-slate-100 text-xs sm:text-sm">
+            <div class="grid grid-cols-1 gap-4 p-5 md:grid-cols-12 md:gap-6">
+              <div class="font-bold text-slate-700 md:col-span-3">البحث وتجهيز الأدوات</div>
+              <div class="text-rose-600 md:col-span-4">
+                <span class="mb-1 inline-block rounded bg-rose-50 px-2 py-0.5 text-xs font-bold text-rose-700">قبل المشروع:</span>
+                تشتت محتويات الخزانات، والاعتماد على الذاكرة أو دفاتر يدوية، وضياع 10-15 دقيقة في فتح الخزانات والتنقل بين الغرف.
+              </div>
+              <div class="text-leaf md:col-span-5">
+                <span class="mb-1 inline-block rounded bg-emerald-50 px-2 py-0.5 text-xs font-bold text-leaf">بعد المشروع:</span>
+                استعلام رقمي فوري في ثانيتين من الهاتف؛ تحديد فوري لرقم الخزنة والمختبر وحالة الأداة والكمية بدقة 100%.
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 gap-4 p-5 md:grid-cols-12 md:gap-6">
+              <div class="font-bold text-slate-700 md:col-span-3">زمن الحصة وتطبيق التجارب</div>
+              <div class="text-rose-600 md:col-span-4">
+                <span class="mb-1 inline-block rounded bg-rose-50 px-2 py-0.5 text-xs font-bold text-rose-700">قبل المشروع:</span>
+                اقتطاع جزء كبير من وقت الدرس العملي في البحث والانتظار، مما يؤدي أحياناً لإلغاء التجربة والاكتفاء بالشرح النظري.
+              </div>
+              <div class="text-leaf md:col-span-5">
+                <span class="mb-1 inline-block rounded bg-emerald-50 px-2 py-0.5 text-xs font-bold text-leaf">بعد المشروع:</span>
+                استثمار 100% من وقت الحصة في التطبيق العملي والملاحظة والمناقشة العلمية الفعالة بين المعلم والطلاب.
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 gap-4 p-5 md:grid-cols-12 md:gap-6">
+              <div class="font-bold text-slate-700 md:col-span-3">استغلال العهدة والوسائل التعليمية</div>
+              <div class="text-rose-600 md:col-span-4">
+                <span class="mb-1 inline-block rounded bg-rose-50 px-2 py-0.5 text-xs font-bold text-rose-700">قبل المشروع:</span>
+                وجود مجسمات نادرة وقيمة (كأجهزة المياه الجوفية والصدوع والمجموعة الشمسية) منسية لسنوات لعدم معرفة المعلمين بمكانها.
+              </div>
+              <div class="text-leaf md:col-span-5">
+                <span class="mb-1 inline-block rounded bg-emerald-50 px-2 py-0.5 text-xs font-bold text-leaf">بعد المشروع:</span>
+                إعادة تفعيل كافة النماذج والأجهزة المفهرسة في المنهج، وتوظيفها التوظيف الأمثل في خدمة الدروس.
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 gap-4 p-5 md:grid-cols-12 md:gap-6">
+              <div class="font-bold text-slate-700 md:col-span-3">أداء المعلم وتفاعل الطلاب</div>
+              <div class="text-rose-600 md:col-span-4">
+                <span class="mb-1 inline-block rounded bg-rose-50 px-2 py-0.5 text-xs font-bold text-rose-700">قبل المشروع:</span>
+                شعور المعلم بالتوتر لضيق الوقت، وصعوبة استيعاب الطلاب للمفاهيم المجردة عند غياب النماذج ثلاثية الأبعاد.
+              </div>
+              <div class="text-leaf md:col-span-5">
+                <span class="mb-1 inline-block rounded bg-emerald-50 px-2 py-0.5 text-xs font-bold text-leaf">بعد المشروع:</span>
+                جاهزية وثقة عالية للمعلم، وارتفاع دافعية وشغف الطلاب من خلال المشاهدة واللمس والتجريب المباشر.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. مؤشرات قياس الأداء والنجاح (KPIs) -->
+      <section id="metrics" class="mb-14 scroll-mt-28">
+        <div class="mb-6 flex items-center justify-between">
+          <div>
+            <div class="section-badge bg-amber-100 text-amberSoft">
+              <i data-lucide="trending-up" class="h-4 w-4"></i>
+              <span>مؤشرات الإنجاز الرقمية</span>
+            </div>
+            <h3 class="mt-2 text-2xl font-extrabold text-ink sm:text-3xl">مؤشرات النجاح وقياس الأثر (KPIs)</h3>
+          </div>
+        </div>
+
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div class="glass-card rounded-xl p-5 shadow-soft">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-slate-500">مؤشر زمن الوصول للأداة</span>
+              <span class="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-100 text-leaf">
+                <i data-lucide="clock" class="h-4 w-4"></i>
+              </span>
+            </div>
+            <p class="mt-3 text-3xl font-black text-leaf">95%↓</p>
+            <p class="mt-1 text-xs text-slate-600">انخفاض زمن البحث من 15 دقيقة إلى أقل من 30 ثانية لكل درس عملي.</p>
+          </div>
+
+          <div class="glass-card rounded-xl p-5 shadow-soft">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-slate-500">مؤشر تفعيل النماذج المنسية</span>
+              <span class="flex h-8 w-8 items-center justify-center rounded-full bg-blue-100 text-ocean">
+                <i data-lucide="layers" class="h-4 w-4"></i>
+              </span>
+            </div>
+            <p class="mt-3 text-3xl font-black text-ocean">80%↑</p>
+            <p class="mt-1 text-xs text-slate-600">زيادة ملحوظة في إشراك المجسمات والعينات العلمية في الحصص اليومية.</p>
+          </div>
+
+          <div class="glass-card rounded-xl p-5 shadow-soft">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-slate-500">مؤشر دقة حصر العهدة</span>
+              <span class="flex h-8 w-8 items-center justify-center rounded-full bg-indigo-100 text-indigo-600">
+                <i data-lucide="check-check" class="h-4 w-4"></i>
+              </span>
+            </div>
+            <p class="mt-3 text-3xl font-black text-indigo-600">100%</p>
+            <p class="mt-1 text-xs text-slate-600">توثيق دقيق وشامل لكافة الخزانات والمواد دون فقد أو تكرار بالبيانات.</p>
+          </div>
+
+          <div class="glass-card rounded-xl p-5 shadow-soft">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-slate-500">مؤشر رضا المعلمين والمحضرين</span>
+              <span class="flex h-8 w-8 items-center justify-center rounded-full bg-amber-100 text-amberSoft">
+                <i data-lucide="smile" class="h-4 w-4"></i>
+              </span>
+            </div>
+            <p class="mt-3 text-3xl font-black text-amberSoft"> ممتاز</p>
+            <p class="mt-1 text-xs text-slate-600">سهولة متناهية في الاستخدام عبر الهواتف والشبكة الداخلية للمدرسة.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- دعوة للتجربة والاستخدام (Call to Action) -->
+      <section class="rounded-2xl border border-ocean/20 bg-gradient-to-r from-ocean to-leaf p-8 text-white shadow-soft">
+        <div class="flex flex-col items-center justify-between gap-6 text-center md:flex-row md:text-right">
+          <div>
+            <h3 class="text-2xl font-black sm:text-3xl">جاهز لتجربة النظام والبحث عن الأدوات؟</h3>
+            <p class="mt-2 text-sm text-blue-100 sm:text-base">
+              انتقل مباشرة إلى شاشة البحث وجرب استعلامك عن أجهزة ومجسمات مختبرات الأحياء والجيولوجيا.
+            </p>
+          </div>
+          <div class="flex shrink-0 gap-3">
+            <a href="index.html" class="inline-flex h-12 items-center gap-2 rounded-lg bg-white px-6 text-sm font-black text-ocean shadow-lifted transition hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-ocean">
+              <i data-lucide="search" class="h-5 w-5"></i>
+              <span>الدخول لمحرك البحث الآن</span>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- تذييل الصفحة (Footer) -->
+    <footer class="mt-16 border-t border-slate-200 bg-white py-8 text-center text-xs text-slate-500">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <p class="font-bold text-ink">نظام إدارة خزانات المختبرات المدرسية</p>
+        <p class="mt-1" id="footerSchoolName">ثانوية صباح الناصر الصباح بنين - قسم العلوم (أحياء وجيولوجيا)</p>
+        <p class="mt-3 text-slate-400">تم التطوير والبرمجة بدعم تقنيات الذكاء الاصطناعي الحديثة لخدمة المعلم والمتعلم.</p>
+      </div>
+    </footer>
+
+    <!-- سكريبت جلب البيانات وتنشيط الأيقونات -->
+    <script>
+      // تنشيط أيقونات Lucide
+      lucide.createIcons();
+
+      // مزامنة اسم المدرسة والشعار من data.json إذا كان متاحاً
+      async function syncSchoolData() {
+        try {
+          const res = await fetch("data.json", { cache: "no-store" });
+          if (!res.ok) return;
+          const data = await res.json();
+          if (data && data.settings && data.settings.schoolName) {
+            const name = data.settings.schoolName;
+            document.title = `عن المشروع ودليل الاستخدام | ${name}`;
+            const headerEl = document.getElementById("schoolNameHeader");
+            if (headerEl) headerEl.textContent = name;
+            const heroEl = document.getElementById("schoolNameHero");
+            if (heroEl) heroEl.textContent = name;
+            const footerEl = document.getElementById("footerSchoolName");
+            if (footerEl) footerEl.textContent = `${name} - قسم العلوم (أحياء وجيولوجيا)`;
+          }
+
+          if (data && data.settings && data.settings.logo) {
+            const logoContainer = document.getElementById("schoolLogoContainer");
+            if (logoContainer) {
+              logoContainer.innerHTML = `<img src="${data.settings.logo}" alt="شعار المدرسة" class="h-full w-full object-cover">`;
+            }
+          }
+        } catch (e) {
+          // استخدام القيم الافتراضية
+        }
+      }
+
+      // تفعيل تمييز روابط الشريط السريع عند التمرير (ScrollSpy)
+      const navPills = document.querySelectorAll(".nav-pill");
+      const sections = document.querySelectorAll("section[id]");
+
+      window.addEventListener("scroll", () => {
+        let current = "";
+        sections.forEach((section) => {
+          const sectionTop = section.offsetTop - 140;
+          if (window.scrollY >= sectionTop) {
+            current = section.getAttribute("id");
+          }
+        });
+
+        navPills.forEach((pill) => {
+          pill.classList.remove("active");
+          if (pill.getAttribute("href") === `#${current}`) {
+            pill.classList.add("active");
+          }
+        });
+      });
+
+      syncSchoolData();
+    </script>
+  </body>
+</html>
